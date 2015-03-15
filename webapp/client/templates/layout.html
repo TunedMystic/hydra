@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} | Hydra</title>
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% block styles %}{% endblock %}
+</head>
+
+<body id="home">
+
+    {% block content %}{% endblock %}
+    
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

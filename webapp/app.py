@@ -7,9 +7,6 @@ from webapp import extensions as ext
 from webapp.base import base
 
 
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
-print "project dir: {0}".format(PROJECT_DIR)
-
 # Installed Extensions.
 INSTALLED_EXTENSIONS = (
     # flask-sqlalchemy

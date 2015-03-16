@@ -58,3 +58,8 @@ target/
 # Virtualenv
 venv/
 
+# Migrations
+migrations/
+
+# Sqlite3 Database
+*.sqlite3

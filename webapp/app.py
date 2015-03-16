@@ -1,22 +1,9 @@
 from __future__ import absolute_import
 
-import os
 from flask import Flask
 
-from webapp import extensions as ext
-from webapp.base import base
-
-
-# Installed Extensions.
-INSTALLED_EXTENSIONS = (
-    # flask-sqlalchemy
-    ext.db,
-)
-
-# Installed Blueprints.
-INSTALLED_BLUEPRINTS = (
-    base,
-)
+from webapp.utils import find_blueprints
+from webapp.extensions import INSTALLED_EXTENSIONS
 
 
 def create_app(app_name=None, config=None, blueprints=None):
@@ -30,7 +17,6 @@ def create_app(app_name=None, config=None, blueprints=None):
         "template_folder": "client/templates",
     }
     app = Flask(**app_kwargs)
-    # App config from object...
     configure_app(app)
     configure_extensions(app)
     configure_blueprints(app)
@@ -42,7 +28,7 @@ def configure_app(app):
     """
     Configure Flask application settings.
     """
-    pass
+    app.config.from_object("webapp.settings")
 
 
 def configure_extensions(app):
@@ -50,8 +36,8 @@ def configure_extensions(app):
     Configure Flask Extensions.
     """
 
-    # flask-sqlalchemy
-    ext.db.init_app(app)
+    for ext in INSTALLED_EXTENSIONS:
+        ext.init_app(app)
 
 
 def configure_blueprints(app):
@@ -59,5 +45,5 @@ def configure_blueprints(app):
     Configure Flask Blueprints.
     """
 
-    for blueprint in INSTALLED_BLUEPRINTS:
+    for blueprint in find_blueprints():
         app.register_blueprint(blueprint)

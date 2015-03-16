@@ -12,10 +12,27 @@ class ObjectFinder(object):
     A Class responsible for searching through modules
     to find classes that meet a specific criteria.
     Used to dynamically load any type of class.
+
+    'project_name':   The name of the Flask application.
+
+    'installed_apps': An tuple containing the names of apps
+                      in the Flask application.
+
+    'submodule_name': The module designating where the ObjectFinder
+                      should search.
+
+    'klass':          This ObjectFinder should search for instances
+                      or subclasses of this class.
+
+    'check_type':     The function to determine if an object meets the
+                      criteria of the ObjectFinder.
     """
 
     check_functions = {
+        # Check if 'obj' is an instance of 'kls'.
         "instance": lambda obj, kls, mod_name: isinstance(obj, kls),
+        # Check if 'obj' is a subclass of 'kls' and 'obj'
+        # was defined in module 'mod_name'.
         "subclass": lambda obj, kls, mod_name:
             issubclass(obj, kls) and obj.__module__ == mod_name
     }
@@ -120,9 +137,3 @@ def find_blueprints():
     }
     finder = ObjectFinder(**finder_kwargs)
     return finder.find_all_objects()
-
-
-if __name__ == '__main__':
-    m = find_db_models()
-    #m = find_blueprints()
-    print m

@@ -102,8 +102,8 @@ class ObjectFinder(object):
                                 instances.append(value)
                         except:
                             pass
-            except:
-                raise Exception("No module named {0}".format(module_name))
+            except Exception, e:
+                raise Exception("Error {0}".format(e.message))
         return instances
 
 

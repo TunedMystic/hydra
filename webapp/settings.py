@@ -2,7 +2,7 @@ import os
 
 INSTALLED_APPS = (
     "base",
-    "wire",
+    #"wire",
 )
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))

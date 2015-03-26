@@ -6,7 +6,9 @@
     <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    {% block styles %}{% endblock %}
+    {% block styles %}
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    {% endblock %}
 </head>
 
 <body id="home">
